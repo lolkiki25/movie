@@ -1,33 +1,40 @@
 import Image from "next/image";
-import { Card, CardContent, CardDescription, CardFooter, CardTitle } from "../ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardTitle,
+} from "../ui/card";
 import { FaStar } from "react-icons/fa";
+import Link from "next/link";
 
-interface MovieCardProps {
+type MovieCardProps = {
   title: string;
-  rating: number;
+  score: number;
   image: string;
-}
+};
 
-export const MovieCard = ({ title, rating, image }: MovieCardProps) => {
+export const MovieCard = ({ title, score, image }: MovieCardProps) => {
   return (
-    <Card className="w-[230px] hover:scale-105 transition-transform shadow-md">
-      <CardContent className="p-0">
-        <Image
-          src={image}
-          alt={title}
-          width={230}
-          height={340}
-          className="object-cover rounded-t-2xl"
-        />
-      </CardContent>
-
-      <CardFooter className="flex flex-col items-start p-2">
-        <CardDescription className="flex items-center gap-2 text-sm">
-          <FaStar color="#FDE047" />
-          <span>{rating}/10</span>
-        </CardDescription>
-        <CardTitle className="text-base">{title}</CardTitle>
-      </CardFooter>
-    </Card>
+    <Link href="/detail">
+      <Card className="w-[230px] bg-secondary p-0 overflow-hidden gap-2">
+        <CardContent className="p-0">
+          <Image
+            src={`https://image.tmdb.org/t/p/w500/${image}`}
+            alt=""
+            width={230}
+            height={340}
+          />
+        </CardContent>
+        <CardFooter className="flex flex-col items-start p-2">
+          <CardDescription className="flex gap-2">
+            <FaStar color="#FDE047" />
+            <span>{score}/10</span>
+          </CardDescription>
+          <CardTitle>{title}</CardTitle>
+        </CardFooter>
+      </Card>
+    </Link>
   );
 };

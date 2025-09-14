@@ -16,26 +16,11 @@ import {
 import { ChevronDown, ChevronRight } from "lucide-react";
 import { Badge } from "../ui/badge";
 import Link from "next/link";
+import { getMovieGenres } from "@/app/utils/get-data";
 
-const GENRES = [
-  {
-    name: "Action",
-  },
-  {
-    name: "Adventure",
-  },
-  {
-    name: "Comedy",
-  },
-  {
-    name: "Horror",
-  },
-  {
-    name: "Sci-fi",
-  },
-];
+export async function GenreDropdown() {
+  const genresResponse = await getMovieGenres();
 
-export function GenreDropdown() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -49,9 +34,9 @@ export function GenreDropdown() {
         </DropdownMenuLabel>
         <p className="px-2">See list of movies by genre</p>
         <DropdownMenuSeparator />
-        <DropdownMenuItem className="hover:!bg-transparent">
-          {GENRES.map((genre) => (
-            <Link href="/genre">
+        <DropdownMenuItem className="hover:!bg-transparent max-w-[400px] flex flex-wrap">
+          {genresResponse.genres.map((genre) => (
+            <Link key={genre.id} href={`/genre?id=${genre.id}`}>
               <Badge variant="outline">
                 {genre.name}
                 <ChevronRight />

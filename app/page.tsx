@@ -1,21 +1,10 @@
-
-import { MovieCard } from "../components/home/MovieCard";
-import { MovieCarousel } from "@/components/main";
-import { mockMovies } from "@/lib/constants";
+import { HomePage, HomePageSkeleton } from "@/components/main";
+import { Suspense } from "react";
 
 export default function Home() {
   return (
-    <div>
-      <MovieCarousel 
-      >
-      </MovieCarousel>
-      <MovieCard
-       title="Dear santa"
-       rating={6.9}
-       image="https://upload.wikimedia.org/wikipedia/en/b/bb/Dear_Santa_%282024_film%29_poster.jpg"
-       >
-
-       </MovieCard>
-    </div>
+    <Suspense fallback={<HomePageSkeleton />}>
+      <HomePage />
+    </Suspense>
   );
 }
