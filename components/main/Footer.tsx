@@ -1,5 +1,5 @@
 export const Footer = () => {
-    return (<footer className="bg-indigo-700 w-full py-[40px] px-[80px]">
+    return (<footer className="bg-indigo-700 max-w-[1440px] mx-auto mt-[24px] py-[40px] px-[80px] ">
         <div className="flex text-white justify-between max-w-[1280px] pb-[64px]">
             <div>
                 <h1 className="font-bold text-[16px] ">Movie Z</h1>
@@ -19,5 +19,6 @@ export const Footer = () => {
                 </div>
             </div>
         </div>
-    </footer>)
+    </footer>
+    )
 }

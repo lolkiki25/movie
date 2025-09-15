@@ -2,24 +2,19 @@ import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuLabel,
-  DropdownMenuPortal,
   DropdownMenuSeparator,
-  DropdownMenuShortcut,
-  DropdownMenuSub,
-  DropdownMenuSubContent,
-  DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { ChevronDown, ChevronRight } from "lucide-react";
 import { Badge } from "../ui/badge";
 import Link from "next/link";
 import { getMovieGenres } from "@/app/utils/get-data";
+import { GenreResponseType } from "@/app/types";
 
 export async function GenreDropdown() {
-  const genresResponse = await getMovieGenres();
+  const genresResponse: GenreResponseType = await getMovieGenres();
 
   return (
     <DropdownMenu>
@@ -36,7 +31,7 @@ export async function GenreDropdown() {
         <DropdownMenuSeparator />
         <DropdownMenuItem className="hover:!bg-transparent max-w-[400px] flex flex-wrap">
           {genresResponse.genres.map((genre) => (
-            <Link key={genre.id} href={`/genre?id=${genre.id}`}>
+            <Link key={genre.id} href={`/genre?id=${genre.id}&name=${genre.name}`}>
               <Badge variant="outline">
                 {genre.name}
                 <ChevronRight />
