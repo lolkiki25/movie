@@ -1,5 +1,6 @@
 import { MovieType } from "@/app/types";
 import { MovieCard } from "./MovieCard";
+import { Button } from "../ui/button";
 
 type MoviesContainerProps = {
   movies: MovieType[];
@@ -12,7 +13,7 @@ export const MoviesContainer = ({ movies, title }: MoviesContainerProps) => {
       <div>
         <div className="flex items-center mb-[36px] justify-between ">
           <h2 className="text-[24px] font-bold">{title}</h2>
-          <button className="text-2 font-inter">See more</button>
+          <Button className="text-2 font-inter">See more</Button>
         </div>
         <div className="flex gap-4 flex-wrap max-w-[1280px] justify-center items-center">
           {movies.slice(0, 10).map((movie) => (
