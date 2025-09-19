@@ -1,7 +1,6 @@
 import { MovieCard } from "@/components/home";
 import { movieResponseType } from "@/app/types";
 import { getMoviesByGenreId } from "@/app/utils/get-data";
-import { GenreDropdown } from "@/components";
 
 
 type GenrePageProps = {
