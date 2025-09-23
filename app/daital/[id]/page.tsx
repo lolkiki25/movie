@@ -1,4 +1,6 @@
-import { getMovieDetail } from "@/app/utils/get-data";
+import { TrailerDialog } from "@/components/trailer/TrailerDialog";
+import { TrailerResponseType } from "@/app/types";
+import { getMovieDetail, getMovieTrailers } from "@/app/utils/get-data";
 
 type DetailDynamicPageProps = {
   params: Promise<{ id: string }>;
@@ -19,9 +21,18 @@ const DetailDynamicPage = async ({ params }: DetailDynamicPageProps) => {
   const id = dynamicParams.id;
   const movieDetailData = await getMovieDetail(id);
 
-  console.log(movieDetailData);
+  const trailerData: TrailerResponseType = await getMovieTrailers(id);
 
-  return <div className="text-2xl font-bold">{movieDetailData.title}</div>;
+  const trailer = trailerData.results.find((item) => item.type === "Trailer");
+
+  return (
+    <div className="text-2xl font-bold">
+      {movieDetailData.title}
+      <>
+        <TrailerDialog youtubeKey={trailer?.key} />
+      </>
+    </div>
+  );
 };
 
 export default DetailDynamicPage;

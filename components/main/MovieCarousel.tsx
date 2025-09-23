@@ -12,7 +12,7 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { MovieType } from "@/app/types";
-import { Fullscreen } from "lucide-react";
+import { getMovieTrailers } from "@/app/utils/get-data";
 import { FaStar } from "react-icons/fa";
 
 type MovieCarouselProps = {
@@ -54,10 +54,10 @@ export function MovieCarousel({ movies, score }: MovieCarouselProps) {
                       alt={movie.title}
                       width={1440}
                       height={600}
-                      className="object-cover rounded-lg"
+                      className="object-cover rounded-lg w-full"
                     />
                     <div className="absolute ml-[140px] w-[404px] mt-10">
-                      <p className="font-inter text-[16px]">Now Playing:</p>
+                      <p className="font-inter text-[16px] text-white">Now Playing:</p>
                       <span className="font-semibold text-2xl  text-white">
                         {movie.title}
                       </span>
@@ -65,7 +65,7 @@ export function MovieCarousel({ movies, score }: MovieCarouselProps) {
                         <FaStar color="#FDE047" />
                         <span>{score}/10</span>
                       </CardDescription>
-                      <p className="mt-4 text-sm opacity-90 line-clamp-3">{movie.overview}</p>
+                      <p className="mt-4 text-sm opacity-90 line-clamp-3 text-white">{movie.overview}</p>
                       <button className="mt-4 inline-flex items-center gap-2 rounded-lg bg-white text-black px-4 py-2 font-medium hover:bg-gray-200 transition">
                         ▶ Watch Trailer
                       </button>

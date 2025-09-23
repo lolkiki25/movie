@@ -34,7 +34,7 @@ export const SearchSection = () => {
       <Input
         value={searchValue}
         onChange={handleChange}
-        className="pl-10"
+        className="pl-10 w-80"
         placeholder="Search.."
       />
       <div>
