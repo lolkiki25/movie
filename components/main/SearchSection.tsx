@@ -4,13 +4,14 @@ import { useState } from "react";
 import { Input } from "../ui/input";
 import { movieResponseType } from "@/app/types";
 import { getSearchedMovies } from "@/app/utils/get-data";
-
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
 import Link from "next/link";
+import Image from "next/image";
+import { FaStar } from "react-icons/fa";
 
 export const SearchSection = () => {
   const [searchValue, setSearchValue] = useState("");
@@ -18,17 +19,21 @@ export const SearchSection = () => {
     null
   );
   const [isOpen, setIsOpen] = useState(false);
+
   const handleChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
     setSearchValue(value);
-    const foundData = await getSearchedMovies(value);
-    if (value.length > 0) {
+
+    if (value.trim().length > 0) {
+      const foundData = await getSearchedMovies(value);
+      setFoundMovies(foundData);
       setIsOpen(true);
     } else {
+      setFoundMovies(null);
       setIsOpen(false);
     }
-    setFoundMovies(foundData);
   };
+
   return (
     <div>
       <Input
@@ -37,19 +42,59 @@ export const SearchSection = () => {
         className="pl-10 w-80"
         placeholder="Search.."
       />
-      <div>
-        <Popover open={isOpen}>
-          <PopoverTrigger className="hidden"></PopoverTrigger>
-          <PopoverContent className="w-80">
-            {foundMovies?.results.slice(0, 5).map((movie) => {
-              return <div>{movie.title}</div>;
-            })}
-            <Link href={`/search?value=${searchValue}`}>
-              See all results for {searchValue}
-            </Link>
-          </PopoverContent>
-        </Popover>
-      </div>
+      <Popover open={isOpen} onOpenChange={setIsOpen}>
+        <PopoverTrigger asChild>
+          <button className="hidden" />
+        </PopoverTrigger>
+        <PopoverContent className="w-80">
+          <div className="flex flex-col gap-3">
+            {foundMovies?.results.slice(0, 5).map((movie) => (
+              <div
+                key={movie.id}
+                className="flex items-center justify-between border-b pb-2"
+              >
+                {/* Зураг + мэдээлэл */}
+                <div className="flex gap-3 items-center">
+                  <Image
+                    src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}
+                    alt={movie.title}
+                    width={50}
+                    height={75}
+                    className="rounded object-cover"
+                  />
+                  <div>
+                    <h3 className="font-medium text-sm">{movie.title}</h3>
+                    <div className="flex items-center gap-2 text-xs text-gray-500">
+                        <FaStar color="#FDE047" />
+            
+                      <span>{movie.vote_average.toFixed(1)}/10</span>
+                      <span>• {movie.release_date?.slice(0, 4)}</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* See more линк */}
+                <Link
+                  href={`/movie/${movie.id}`}
+                  className="text-blue-500 text-xs"
+                >
+                  See more →
+                </Link>
+              </div>
+            ))}
+
+            {/* Доод линк */}
+            {foundMovies && (
+              <Link
+                href={`/search?value=${searchValue}`}
+                className="text-center text-blue-600 text-sm font-medium pt-2"
+              >
+                See all results for "{searchValue}"
+              </Link>
+            )}
+          </div>
+        </PopoverContent>
+      </Popover>
     </div>
   );
 };
