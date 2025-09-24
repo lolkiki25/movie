@@ -11,7 +11,7 @@ type MoviesContainerProps = {
 
 export const MoviesContainer = ({ movies, title, link }: MoviesContainerProps) => {
   return (
-    <div className="flex justify-center items-center mt-[52px] mb-[51px]">
+    <div className="flex justify-center items-center mt-[52px] mb-[51px] ">
       <div>
         <div className="flex items-center mb-[36px] justify-between ">
           <h2 className="text-[24px] font-bold">{title}</h2>

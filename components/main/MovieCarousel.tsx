@@ -40,9 +40,9 @@ export function MovieCarousel({ movies, score }: MovieCarouselProps) {
   }, [api]);
 
   return (
-    <>
+    <div className="w-sceen flex justify-center">
       <Carousel setApi={setApi} className="w-screen mt-[24px] flex justify-center items-end">
-        <CarouselContent>
+        <CarouselContent className="max-w-[1440px]">
           {movies.map((movie, index) => (
             <MovieCarouselItem key={index} movie={movie} score={score} />
           ))}
@@ -62,7 +62,7 @@ export function MovieCarousel({ movies, score }: MovieCarouselProps) {
           ))}
         </div>
       </Carousel>
-    </>
+    </div>
   );
 }
 
@@ -83,7 +83,7 @@ const MovieCarouselItem = ({ movie, score }: { movie: MovieType; score: number }
 
   return (
     <CarouselItem className="w-screen">
-      <div className="p-1">
+      <div>
         <Card className="bg-secondary p-0 overflow-hidden">
           <CardContent className="flex aspect-video max-h-[600px] items-center p-0">
             <Image

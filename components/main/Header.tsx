@@ -6,12 +6,12 @@ import { SearchSection } from "./SearchSection";
 
 export const Header = () => {
     return (
-        <header className="w-full">
+        <header className="w-screen">
             <div className="max-w-[1280px] flex justify-between m-auto items-center py-3">
                 <div>
                     <img src="./Logo.png" className="h-5"/>
                 </div>
-                <div className="flex gap-4">
+                <div className="flex gap-4 justify-center">
                     <GenreDropdown/>
                     <div className="flex items-center w-[379px] h-9">
                         <Search className="-mr-8" />
@@ -25,4 +25,3 @@ export const Header = () => {
         </header>
     )
 };
-console.log

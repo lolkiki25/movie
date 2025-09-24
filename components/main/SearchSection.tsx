@@ -39,62 +39,66 @@ export const SearchSection = () => {
       <Input
         value={searchValue}
         onChange={handleChange}
-        className="pl-10 w-80"
+        className="pl-10 w-80 mt-6"
         placeholder="Search.."
       />
-      <Popover open={isOpen} onOpenChange={setIsOpen}>
-        <PopoverTrigger asChild>
-          <button className="hidden" />
-        </PopoverTrigger>
-        <PopoverContent className="w-80">
-          <div className="flex flex-col gap-3">
-            {foundMovies?.results.slice(0, 5).map((movie) => (
-              <div
-                key={movie.id}
-                className="flex items-center justify-between border-b pb-2"
-              >
-                {/* Зураг + мэдээлэл */}
-                <div className="flex gap-3 items-center">
-                  <Image
-                    src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}
-                    alt={movie.title}
-                    width={50}
-                    height={75}
-                    className="rounded object-cover"
-                  />
-                  <div>
-                    <h3 className="font-medium text-sm">{movie.title}</h3>
-                    <div className="flex items-center gap-2 text-xs text-gray-500">
+      <div>
+        <Popover open={isOpen} onOpenChange={setIsOpen}>
+          <PopoverTrigger asChild>
+            <button className=""></button>
+          </PopoverTrigger>
+          <PopoverContent align="start" className="flex justify-center w-120">
+            <div className="flex flex-col gap-3">
+              {foundMovies?.results.slice(0, 5).map((movie) => (
+                <div
+                  key={movie.id}
+                  className="flex items-center justify-between border-b pb-2"
+                >
+                  {/* Зураг + мэдээлэл */}
+                  <div className="flex gap-3 items-center">
+                    <Image
+                      src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}
+                      alt={movie.title}
+                      width={75}
+                      height={100}
+                      className="rounded object-cover"
+                    />
+                    <div className="w-70">
+                      <h3 className="font-medium text-sm">{movie.title}</h3>
+                      <div className="flex items-center gap-2 text-xs text-gray-500">
                         <FaStar color="#FDE047" />
-            
-                      <span>{movie.vote_average.toFixed(1)}/10</span>
-                      <span>• {movie.release_date?.slice(0, 4)}</span>
+
+                        <span>{movie.vote_average.toFixed(1)}/10</span>
+                      </div>
+                      <div className="font-inter text-sm mt-4">
+                        <span>{movie.release_date?.slice(0, 4)}</span>
+                      </div>
                     </div>
                   </div>
+
+                  {/* See more линк */}
+                  <Link
+                    href={`/movie/${movie.id}`}
+                    className="text-blue-500 text-xs"
+                  >
+                    See more →
+                  </Link>
                 </div>
+              ))}
 
-                {/* See more линк */}
+              {/* Доод линк */}
+              {foundMovies && (
                 <Link
-                  href={`/movie/${movie.id}`}
-                  className="text-blue-500 text-xs"
+                  href={`/search?value=${searchValue}`}
+                  className="text-center text-blue-600 text-sm font-medium pt-2"
                 >
-                  See more →
+                  See all results for "{searchValue}"
                 </Link>
-              </div>
-            ))}
-
-            {/* Доод линк */}
-            {foundMovies && (
-              <Link
-                href={`/search?value=${searchValue}`}
-                className="text-center text-blue-600 text-sm font-medium pt-2"
-              >
-                See all results for "{searchValue}"
-              </Link>
-            )}
-          </div>
-        </PopoverContent>
-      </Popover>
+              )}
+            </div>
+          </PopoverContent>
+        </Popover>
+      </div>
     </div>
   );
 };

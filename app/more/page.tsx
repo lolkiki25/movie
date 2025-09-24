@@ -12,7 +12,10 @@ const MorePage = async ({ searchParams }: MorePageProps) => {
 
   const moviesRes: movieResponseType = await getMoviesList(title);
   return (
-    <div className="flex gap-4 flex-wrap">
+    <div className="flex w-screen justify-center">
+    <div>
+      <p>Upcoming</p>
+    <div className="flex gap-4 flex-wrap justify-center max-w-[1280px]">
       {moviesRes.results.map((movie) => (
         <MovieCard
           key={movie.id}
@@ -22,6 +25,8 @@ const MorePage = async ({ searchParams }: MorePageProps) => {
           image={movie.poster_path}
         />
       ))}
+    </div>
+    </div>
     </div>
   );
 };
