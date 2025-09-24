@@ -40,29 +40,27 @@ export function MovieCarousel({ movies, score }: MovieCarouselProps) {
   }, [api]);
 
   return (
-    <div className="w-sceen flex justify-center">
-      <Carousel setApi={setApi} className="w-screen mt-[24px] flex justify-center items-end">
-        <CarouselContent className="max-w-[1440px]">
-          {movies.map((movie, index) => (
-            <MovieCarouselItem key={index} movie={movie} score={score} />
-          ))}
-        </CarouselContent>
-        <CarouselPrevious className="left-13" />
-        <CarouselNext className="right-13" />
-        <div className="flex gap-2 absolute p-6">
-          {Array.from({ length: count }).map((_, index) => (
-            <div
-              onClick={() => {
-                api?.scrollTo(index);
-              }}
-              key={index}
-              className={`rounded-full size-3 ${index + 1 === current ? "bg-white" : "bg-gray-600"
-                }`}
-            ></div>
-          ))}
-        </div>
-      </Carousel>
-    </div>
+    <Carousel setApi={setApi} className="max-w-[1440px] mt-[24px] flex justify-center items-end">
+      <CarouselContent>
+        {movies.map((movie, index) => (
+          <MovieCarouselItem key={index} movie={movie} score={score} />
+        ))}
+      </CarouselContent>
+      <CarouselPrevious className="left-13" />
+      <CarouselNext className="right-13" />
+      <div className="flex gap-2 absolute p-6">
+        {Array.from({ length: count }).map((_, index) => (
+          <div
+            onClick={() => {
+              api?.scrollTo(index);
+            }}
+            key={index}
+            className={`rounded-full size-3 ${index + 1 === current ? "bg-white" : "bg-gray-600"
+              }`}
+          ></div>
+        ))}
+      </div>
+    </Carousel>
   );
 }
 
@@ -85,7 +83,7 @@ const MovieCarouselItem = ({ movie, score }: { movie: MovieType; score: number }
     <CarouselItem className="w-screen">
       <div>
         <Card className="bg-secondary p-0 overflow-hidden">
-          <CardContent className="flex aspect-video max-h-[600px] items-center p-0">
+          <CardContent className="flex aspect-video max-h-[600px] items-center p-0 w-full">
             <Image
               src={`https://image.tmdb.org/t/p/w1280${movie.backdrop_path}`}
               alt={movie.title}
@@ -93,7 +91,7 @@ const MovieCarouselItem = ({ movie, score }: { movie: MovieType; score: number }
               height={600}
               className="object-cover rounded-lg w-full"
             />
-            <div className="absolute ml-[140px] w-[404px] mt-10">
+            <div className="absolute ml-[140px] mt-10 w-[404px]">
               <p className="font-inter text-[16px]">Now Playing:</p>
               <span className="text-2xl font-semibold">{movie.title}</span>
               <div className="flex items-center gap-2 mt-4">
