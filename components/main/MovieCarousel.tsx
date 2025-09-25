@@ -40,8 +40,8 @@ export function MovieCarousel({ movies, score }: MovieCarouselProps) {
   }, [api]);
 
   return (
-    <Carousel setApi={setApi} className="max-w-[1440px] mt-[24px] flex justify-center items-end">
-      <CarouselContent>
+    <Carousel setApi={setApi} className="w-screen mt-[24px] flex justify-center items-end">
+      <CarouselContent className="max-w-[1440px]">
         {movies.map((movie, index) => (
           <MovieCarouselItem key={index} movie={movie} score={score} />
         ))}
@@ -49,7 +49,7 @@ export function MovieCarousel({ movies, score }: MovieCarouselProps) {
       <CarouselPrevious className="left-13" />
       <CarouselNext className="right-13" />
       <div className="flex gap-2 absolute p-6">
-        {Array.from({ length: count }).map((_, index) => (
+        {Array.from({ length: 5 }).map((_, index) => (
           <div
             onClick={() => {
               api?.scrollTo(index);

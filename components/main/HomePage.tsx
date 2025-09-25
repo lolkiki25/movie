@@ -13,7 +13,7 @@ export async function HomePage() {
 
   return (
     <div>
-     <MovieCarousel movies={nowPlayingMovies.results} />
+      <MovieCarousel movies={nowPlayingMovies.results} />
       <MoviesContainer
         movies={upcomingMovies.results}
         title="Upcoming"
