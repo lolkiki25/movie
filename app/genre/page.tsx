@@ -24,7 +24,7 @@ const Genre = async ({ searchParams }: GenrePageProps) => {
       </div>
       <div className="ml-6">
         {name}
-        <div className="flex flex-wrap gap-3 max-w-[1280px] items-center">
+        <div className="flex flex-wrap gap-3 max-w-[1080px] items-center">
           {filteredMoviesResponse.results.slice(0, 10).map((movie) => (
             <MovieCard
               key={movie.id}

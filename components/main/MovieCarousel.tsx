@@ -41,7 +41,7 @@ export function MovieCarousel({ movies, score }: MovieCarouselProps) {
 
   return (
     <Carousel setApi={setApi} className="w-screen mt-[24px] flex justify-center items-end">
-      <CarouselContent className="max-w-[1440px]">
+      <CarouselContent className="max-w-[1080px]">
         {movies.map((movie, index) => (
           <MovieCarouselItem key={index} movie={movie} score={score} />
         ))}

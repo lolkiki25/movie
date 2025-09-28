@@ -17,7 +17,7 @@ export const getMoviesList = async (listName: string, page?: string) => {
 
 export const getMovieGenres = async () => {
   const res = await fetch(
-    `https://api.themoviedb.org/3/genre/movie/list?language=en-Us$`,
+    `https://api.themoviedb.org/3/genre/movie/list?language=en`,
     {
       method: "GET",
       headers: {
@@ -75,9 +75,37 @@ export const getMovieDetail = async (movieId: string) => {
   return data;
 };
 
-export const getMovieTrailers = async (movieId: string) => {
+export const getMovieTrailers = async (id: string) => {
   const res = await fetch(
-    `https://api.themoviedb.org/3/movie/${movieId}/videos?language=en-US`,
+    `https://api.themoviedb.org/3/movie/${id}/videos?language=en-US`,
+    {
+      method: "GET",
+      headers: {
+        accept: "application/json",
+        Authorization: `Bearer ${process.env.NEXT_PUBLIC_KEY_TMDB_ACCESS_KEY}`,
+      },
+    }
+  );
+  const data = await res.json();
+  return data;
+};
+export const getMovieCredits = async (id: string) => {
+  const res = await fetch(
+    `https://api.themoviedb.org/3/movie/${id}/credits?language=en-US`,
+    {
+      method: "GET",
+      headers: {
+        accept: "application/json",
+        Authorization: `Bearer ${process.env.NEXT_PUBLIC_KEY_TMDB_ACCESS_KEY}`,
+      },
+    }
+  );
+  const data = await res.json();
+  return data;
+};
+export const getMovieSimilar = async (id: string) => {
+  const res = await fetch(
+    `https://api.themoviedb.org/3/movie/${id}/similar?language=en-US&page=1`,
     {
       method: "GET",
       headers: {

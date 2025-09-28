@@ -30,7 +30,7 @@ const MorePage = async ({ searchParams }: MorePageProps) => {
   return (
     <div className="flex w-screen justify-center mt-[52px]">
       <div>
-        <div className="pb-2 max-w-[1280px]">
+        <div className="pb-2 max-w-[1080px]">
            {/* Гарчиг */}
           <h1 className=" text-2xl font-bold">{formattedTitle}</h1>
           <div className="flex gap-4 flex-wrap justify-center mt-10 pb-2">
