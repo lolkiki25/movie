@@ -41,7 +41,7 @@ export function MovieCarousel({ movies, score }: MovieCarouselProps) {
 
   return (
     <Carousel setApi={setApi} className="w-screen mt-[24px] flex justify-center items-end">
-      <CarouselContent className="max-w-[1080px]">
+      <CarouselContent className="max-w-[1280px]">
         {movies.map((movie, index) => (
           <MovieCarouselItem key={index} movie={movie} score={score} />
         ))}
@@ -91,14 +91,14 @@ const MovieCarouselItem = ({ movie, score }: { movie: MovieType; score: number }
               height={600}
               className="object-cover rounded-lg w-full"
             />
-            <div className="absolute ml-[140px] mt-10 w-[404px]">
+            <div className="absolute ml-[140px] mt-10 w-screen ">
               <p className="font-inter text-[16px]">Now Playing:</p>
               <span className="text-2xl font-semibold">{movie.title}</span>
               <div className="flex items-center gap-2 mt-4">
                 <FaStar color="#FDE047" />
                 <span>{movie.vote_average.toFixed(1)}/10</span>
               </div>
-              <p className="mt-4 text-sm opacity-90 line-clamp-3">{movie.overview}</p>
+              <p className="mt-4 text-sm opacity-90 line-clamp-3 max-w-[404px]">{movie.overview}</p>
               <div className="mt-4">
                 <TrailerDialog youtubeKey={trailerKey} />
               </div>
